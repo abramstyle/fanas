@@ -1,6 +1,6 @@
 {
   "name": "@abramstyle/utils",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "A light weight javascript utilities to operate object, arrays and another data types.",
   "main": "dist/kl-utils.js",
   "repository": "https://github.com/abramstyle/utils",
@@ -9,7 +9,8 @@
     "build": "webpack -p",
     "coverage": "yarn run test && yarn run append",
     "test": "jest --coverage",
-    "append": "coveralls < coverage/lcov.info"
+    "append": "coveralls < coverage/lcov.info",
+    "publish": "npm publish"
   },
   "license": "MIT",
   "devDependencies": {
