@@ -1,9 +1,7 @@
 # kl-utils
 
 [![npm version](https://badge.fury.io/js/%40abramstyle%2Futils.svg)](https://badge.fury.io/js/%40abramstyle%2Futils)
-
 [![CircleCI](https://circleci.com/gh/abramstyle/utils/tree/master.svg?style=svg)](https://circleci.com/gh/abramstyle/utils/tree/master)
-
 [![Coverage Status](https://coveralls.io/repos/github/abramstyle/utils/badge.svg?branch=master)](https://coveralls.io/github/abramstyle/utils?branch=master)
 
 A light weight javascript utilities to operate object, arrays and another data types.
