@@ -7,13 +7,16 @@
   "author": "Abram.Zhao <abram.style@gmail.com>",
   "scripts": {
     "build": "webpack -p",
-    "test": "jest"
+    "coverage": "yarn run test && yarn run append",
+    "test": "jest --coverage",
+    "append": "coveralls < coverage/lcov.info"
   },
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^8.0.1",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "coveralls": "^3.0.0",
     "eslint": "^4.9.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.7.0",
