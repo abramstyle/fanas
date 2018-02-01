@@ -46,6 +46,7 @@ jobs:
           - master
     docker:
       - image: circleci/node:latest
+    working_directory: ~/repo
     steps:
       - run:
         name: build
@@ -60,8 +61,7 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      requires:
-        - build
+      - build:
       - deploy:
         requires:
           - build
