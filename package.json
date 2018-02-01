@@ -1,6 +1,6 @@
 {
   "name": "@abramstyle/utils",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "A light weight javascript utilities to operate object, arrays and another data types.",
   "main": "dist/kl-utils.js",
   "repository": "https://github.com/abramstyle/utils",
