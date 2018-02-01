@@ -106,9 +106,9 @@ jobs:
       - run:
           name: add npm token
           command: echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
-      - run:
-          name: publish
-          command: npm publish
+      # - run:
+      #     name: publish
+      #     command: npm publish
 workflows:
   version: 2
   build-deploy:
