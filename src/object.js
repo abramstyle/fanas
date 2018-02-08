@@ -37,6 +37,22 @@ const objectUtils = {
     return resultObject;
   },
 
+  pick(object, keys) {
+    if (!Array.isArray(keys)) {
+      throw new Error('expect keys as an array');
+    }
+
+    const paths = new Set(keys);
+    const resultObject = Object.keys(object).filter(key => paths.has(key))
+      .reduce((result, current) => {
+        if (!object[current]) return result;
+        result[current] = object[current];
+        return result;
+      }, {});
+
+    return resultObject;
+  },
+
   isItem(object) {
     return objectUtils.hasKey(object, 'id') && objectUtils.hasKey(object, 'quantity');
   },
@@ -74,12 +90,12 @@ const objectUtils = {
         return objectUtils.isEqualItem(item, otherItem);
       }
 
-      if (typeof item === 'object') {
+      if (objectUtils.isObject(item)) {
         return objectUtils.isEqual(item, otherItem);
       }
 
       if (Array.isArray(item)) {
-        return objectUtils.isEqualItem(item, otherItem);
+        return arrayUtils.isEqual(item, otherItem);
       }
 
       if (item === otherItem) {
@@ -116,9 +132,6 @@ const objectUtils = {
   },
 
   toJSON(object, camelCase = true) {
-    // const transformedData = camelCase ? _.mapKeys(data, (v, k) => _.camelCase(k)) : data;
-    // console.log(require('util').inspect(objectUtils.toCamelCase(object), { depth: null }));
-    // console.log(require('util').inspect(, { depth: null }));
     if (camelCase) {
       return JSON.stringify(objectUtils.toCamelCase(object));
     }

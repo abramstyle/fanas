@@ -61,6 +61,33 @@ describe('Object', () => {
     });
   });
 
+  test('pick', () => {
+    const object = {
+      a: 1,
+      b: 2,
+      c: 3,
+      d: 4,
+    };
+    try {
+      objectUtils.pick(object, 'a');
+    } catch (e) {
+      expect(e).toEqual(new Error('expect keys as an array'));
+    }
+    expect(objectUtils.pick(object, ['a', 'b', 'c'])).toEqual({
+      a: 1,
+      b: 2,
+      c: 3,
+    });
+    expect(objectUtils.pick(object, ['b', 'c'])).toEqual({
+      b: 2,
+      c: 3,
+    });
+    expect(objectUtils.pick(object, ['a', 'c', 'e'])).toEqual({
+      a: 1,
+      c: 3,
+    });
+  });
+
   test('isItem', () => {
     expect(objectUtils.isItem({ id: 111, quantity: 2 })).toBeTruthy();
     expect(objectUtils.isItem({ id: 222 })).toBeFalsy();
@@ -115,12 +142,55 @@ describe('Object', () => {
       },
       d: 3,
     };
+    const item1 = {
+      id: 1,
+      item: {
+        id: 2,
+        quantity: 3,
+      },
+    };
 
+    const item2 = {
+      id: 1,
+      item: {
+        id: 2,
+        quantity: 5,
+      },
+    };
+    const complexObject1 = {
+      a: 1,
+      b: [1, 2, 3],
+      c: {
+        d: 2,
+        e: [4, 5, 6],
+      },
+    };
+    const complexObject2 = {
+      a: 1,
+      b: [1, 2, 3],
+      c: {
+        d: 2,
+        e: [4, 5, 6],
+      },
+    };
+    const complexObject3 = {
+      a: 1,
+      b: [1, 2, 3],
+      c: {
+        d: 2,
+        e: [4, 5, 6, 7],
+      },
+    };
+
+    expect(objectUtils.isEqual('a', 'b')).toBeFalsy();
     expect(objectUtils.isEqual(object1, object2)).toBeTruthy();
     expect(objectUtils.isEqual(object3, object4)).toBeTruthy();
     expect(objectUtils.isEqual(object1, object4)).toBeFalsy();
     expect(objectUtils.isEqual(object1, [])).toBeFalsy();
     expect(objectUtils.isEqual([], object1)).toBeFalsy();
+    expect(objectUtils.isEqual(item1, item2)).toBeTruthy();
+    expect(objectUtils.isEqual(complexObject1, complexObject2)).toBeTruthy();
+    expect(objectUtils.isEqual(complexObject1, complexObject3)).toBeFalsy();
   });
 
   test('toCamelCase', () => {
