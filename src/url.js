@@ -21,7 +21,8 @@ const urlUtils = {
     Object.assign(urlObject, {
       query: Object.assign(urlObject.query, queryObject),
     });
-    urlObject.search = `?${querystring.stringify(urlObject.query)}`;
+    const search = querystring.stringify(urlObject.query);
+    urlObject.search = search ? `?${search}` : null;
 
     return url.format(urlObject);
   },
