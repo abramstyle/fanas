@@ -1,6 +1,15 @@
 import stringUtils from '../string';
 
 describe('stringUtils', () => {
+  test('isString', () => {
+    expect(stringUtils.isString('lorem')).toBeTruthy();
+    expect(stringUtils.isString({})).toBeFalsy();
+    expect(stringUtils.isString([])).toBeFalsy();
+    expect(stringUtils.isString(null)).toBeFalsy();
+    expect(stringUtils.isString(undefined)).toBeFalsy();
+    expect(stringUtils.isString(true)).toBeFalsy();
+  });
+
   test('camelCase', () => {
     const camelCase = stringUtils.camelCase();
 
