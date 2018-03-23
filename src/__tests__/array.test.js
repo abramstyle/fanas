@@ -83,6 +83,8 @@ const condition = {
   id: 3,
 };
 
+const functionCondition = (item => item.id === 2);
+
 const nestedArray = [[1, 2], [3, 4], [[5]]];
 
 describe('arrayUtils', () => {
@@ -109,6 +111,10 @@ describe('arrayUtils', () => {
   test('findOne', () => {
     expect(arrayUtils.findOne(array1, condition)).toEqual({
       id: 3,
+      quantity: 3,
+    });
+    expect(arrayUtils.findOne(array1, functionCondition)).toEqual({
+      id: 2,
       quantity: 3,
     });
   });
