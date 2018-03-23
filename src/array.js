@@ -64,8 +64,8 @@ const arrayUtils = {
     if (!array) {
       array = [];
     }
-    const result = array.filter(item =>
-      Object.keys(condition).every(key => item[key] === condition[key]));
+    const comparation = (typeof conditionGenerator === 'function') ? condition : item => Object.keys(condition).every(key => item[key] === condition[key]);
+    const result = array.filter(comparation);
 
     return result.length > 0 && result[0];
   },
