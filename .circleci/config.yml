@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  test:
     filters:
       branches:
         only:
@@ -39,7 +39,7 @@ jobs:
 
       # run tests!
       - run: yarn run coverage
-  test:
+  build:
     filters:
       branches:
         only:
@@ -67,14 +67,14 @@ jobs:
 
       - run: yarn install
 
+      # build packages
+      - run: yarn run build
+
       - save_cache:
           paths:
+            - dist
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run:
-          name: run test suites
-          command: yarn run test
+          key: v1-build-{{ .Revision }}
   deploy:
     filters:
       branches:
@@ -86,23 +86,13 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
+      # use built result
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-build-{{ .Revision }}
           # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
+          - v1-build-
 
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-
-      - run:
-          name: build
-          command: yarn run build
       - run:
           name: add npm token
           command: echo "//registry.npmjs.org/:_authToken=$NPM_AUTH_TOKEN" >> ~/.npmrc
@@ -113,7 +103,10 @@ workflows:
   version: 2
   build-deploy:
     jobs:
-      - build
+      - test
+      - build:
+          requires:
+            - test
       - deploy:
           requires:
             - build
