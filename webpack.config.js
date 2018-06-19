@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 // const webpack = require('webpack');
 
-const libName = 'kl-utils';
+const libName = 'fanas';
 
 module.exports = {
   entry: {

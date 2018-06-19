@@ -1,8 +1,8 @@
 {
-  "name": "@abramstyle/utils",
+  "name": "fanas",
   "version": "0.8.15",
   "description": "A light weight javascript utilities to operate object, arrays and another data types.",
-  "main": "dist/kl-utils.js",
+  "main": "dist/fanas.js",
   "repository": "https://github.com/abramstyle/utils",
   "author": "Abram.Zhao <abram.style@gmail.com>",
   "scripts": {
