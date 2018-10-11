@@ -8,7 +8,7 @@ const data = {};
 
 console.log('json builder benchmark is running...');
 const startTime = Date.now();
-for (let r = 0; r < repeatCount; ++r) {
+for (let r = 0; r < repeatCount; r += 1) {
   for (let i = 0; i < maxRunningCount; i += 1) {
     objectUtils.toJSON(data, true);
   }

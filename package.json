@@ -9,8 +9,13 @@
     "build": "webpack -p",
     "coverage": "yarn run test && yarn run append",
     "test": "jest --coverage",
-    "append": "coveralls < coverage/lcov.info"
+    "append": "coveralls < coverage/lcov.info",
+    "lint": "eslint ./"
   },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
   "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^8.0.1",
