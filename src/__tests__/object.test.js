@@ -67,6 +67,8 @@ describe('Object', () => {
       b: 2,
       c: 3,
       d: 4,
+      e: false,
+      f: undefined,
     };
     try {
       objectUtils.pick(object, 'a');
@@ -82,9 +84,15 @@ describe('Object', () => {
       b: 2,
       c: 3,
     });
-    expect(objectUtils.pick(object, ['a', 'c', 'e'])).toEqual({
+    expect(objectUtils.pick(object, ['a', 'c', 'g'])).toEqual({
       a: 1,
       c: 3,
+      g: undefined,
+    });
+    expect(objectUtils.pick(object, ['a', 'e', 'f'])).toEqual({
+      a: 1,
+      e: false,
+      f: undefined,
     });
   });
 

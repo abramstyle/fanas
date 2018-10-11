@@ -45,7 +45,6 @@ const objectUtils = {
     const paths = new Set(keys);
     const resultObject = Object.keys(object).filter(key => paths.has(key))
       .reduce((result, current) => {
-        if (!object[current]) return result;
         result[current] = object[current];
         return result;
       }, {});
