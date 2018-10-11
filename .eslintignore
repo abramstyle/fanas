@@ -15,4 +15,5 @@ dump.rdb
 .project
 coverage/*
 logs/*
+dist/*
 .happypack/

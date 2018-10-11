@@ -17,4 +17,5 @@ release.js
 pm2.json
 coverage/*
 logs/*
+dist/*
 .happypack/
